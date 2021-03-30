@@ -11,26 +11,26 @@
         const suffix1 = d.getFullYear() + pad(d.getMonth()+1) + pad(d.getDate())
         const suffix2 = pad(d.getHours()) + pad(d.getMinutes()) + pad(d.getSeconds())
         
-        // pas eventueel de naam en het token aan 
+        // pas eventueel de naam en het token aan
         const tokenName = "TWEAKER."+suffix1+"."+suffix2
         const tokenSymbol = "TWK"
         
-        const contractName = 'Nft' 
+        const contractName = 'Nft'
         const constructorArgs = [tokenName, tokenSymbol]
     
         // het script gebruikt de ABI gegevens uit de artefacten die bestaan nadat het smart contract gecompileerd is
         // Zorg ervoor dat het script en keer succesvol gecompileerd is voordat dit script wordt gebruikt!
-        const artifactsPath = `browser/contracts/artifacts/${contractName}.json` 
+        const artifactsPath = `browser/contracts/artifacts/${contractName}.json`
 
         const metadata = JSON.parse(await remix.call('fileManager', 'getFile', artifactsPath))
         
         // Zorg ervoor dat metamask verbonden is met de IDE en dat "Environment" is ingesteld op "Injected Web3"
-        // als dit klop zie je "Rinkeby (4) network" vermeld staan 
+        // als dit klopt zie je "Rinkeby (4) network" vermeld staan
         
         // het geselecteerde account in metamask betaalt voor het uitrollen en wordt eigenaar
         const accounts = await web3.eth.getAccounts()
         
-        // maak een nieuwe instantie van het contract 
+        // maak een nieuwe instantie van het contract
         let contract = new web3.eth.Contract(metadata.abi)
     
         // maak een transactie aan om het contract in de blockchain te zetten

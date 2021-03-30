@@ -2,34 +2,44 @@
 (async () => {
     try {
         console.log('Running create_nft script...')
+
+        // haal de lijst met beschikbare accounts op uit metamask
+        const accounts = await web3.eth.getAccounts()
         
-        const contractName = 'Nft' 
-        const contractAddress = '0x6d71e54a8e72D92d87D493348f8d7a7146BdD3C3'
-        
-        const newOwnerAddress = '0x4E8f25075256461c9B3C89eF7E8Ad0b8119A2A2c'
-        const newMetadata = {
-          "name": "This is a new NFT",
-          "description": "some description here!",
-          "image": "https://bumos.nl/BumosKlein.png",
-          "attributes": []
+        const contractName = 'Nft'
+
+        const contractAddress = '' // TODO: invullen nadat het contract gedeployed is!
+        if(""===contractAddress) {
+          console.log("Afgebroken: vul eerst het contractadres in!");
+          return;
         }
-        const newURI = ''
-    
+        
+        // const newOwnerAddress = '' // TODO: invullen met een geldig ethereum adres
+        const newOwnerAddress=accounts[0] // of gebruik het in metamask geselecteerde adres
+        if(""===newOwnerAddress) {
+          console.log("Afgebroken: vul eerst het adres van de nieuwe eigenaar in!");
+          return;
+        }
+
         const artifactsPath = `browser/contracts/artifacts/${contractName}.json` // Change this for different path
 
         const metadata = JSON.parse(await remix.call('fileManager', 'getFile', artifactsPath))
-        const accounts = await web3.eth.getAccounts()
         
         let contractInstance = new web3.eth.Contract(metadata.abi, contractAddress);
-    
-        let token=await contractInstance.methods.awardItem(newOwnerAddress, newMetadata).send({
+        let totalSupply = await contractInstance.methods.totalSupply().call()
+        let nextid = Number(totalSupply) + 1
+
+        // maak een link naar het metadata record voor deze token
+        const uri = "https://raw.githubusercontent.com/mosbuma/tweakers-nft/master/data/" + nextid.toString() +".json"
+        
+        // mint een nieuwe token en stuur deze naar de nieuwe eigenaar
+        console.log("token " + nextid + " wordt verstuurd naar adres " + newOwnerAdddres)
+        let token=await contractInstance.methods.sendNFT(newOwnerAddress, uri).send({
             from: accounts[0],
-            gas: 1500000,
-            gasPrice: '30000000000'
+            gas: 1500000
         })
-        console.log(token)
-        let owner=await contractInstance.methods.ownerOf(2).call()
-        console.log('token 1 owner ', owner)
+        
+        console.log("bekijk de nieuwe token op opensea:", "https://testnets.opensea.io/assets/" + contractAddress + '/' + nextid)
     } catch (e) {
         console.log(e.message)
     }
