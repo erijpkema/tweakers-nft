@@ -43,7 +43,7 @@ const createTokenData = async (tokenindex) =>  {
     let metadata = {
       "name": "Dit is een tweakers NFT",
       "description": "Gemaakt dankzij tweakers.nl!",
-      "image": "https://github.com/mosbuma/tweakers-nft/blob/master/data/" + tokenindex + ".png",
+      "image": "https://github.com/mosbuma/tweakers-nft/raw/master/data/" + tokenindex + ".png",
       "attributes": []
     }
 
