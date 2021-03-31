@@ -3,9 +3,6 @@
     try {
         console.log('Running create_nft script...')
 
-        // haal de lijst met beschikbare accounts op uit metamask
-        const accounts = await web3.eth.getAccounts()
-        
         const contractName = 'Nft'
 
         const contractAddress = '' // TODO: invullen nadat het contract gedeployed is!
@@ -14,6 +11,9 @@
           return;
         }
         
+        // haal de lijst met beschikbare accounts op uit metamask
+        const accounts = await web3.eth.getAccounts()
+        
         // const newOwnerAddress = '' // TODO: invullen met een geldig ethereum adres
         const newOwnerAddress=accounts[0] // of gebruik het in metamask geselecteerde adres
         if(""===newOwnerAddress) {
@@ -21,7 +21,7 @@
           return;
         }
 
-        const artifactsPath = `browser/github/mosbuma/tweakers-nft/artifacts/${contractName}.json`
+        const artifactsPath = `browser/github/mosbuma/tweakers-nft/artifacts/${contractName}.json` // Change this for different path
 
         const metadata = JSON.parse(await remix.call('fileManager', 'getFile', artifactsPath))
         
