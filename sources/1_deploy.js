@@ -20,7 +20,7 @@
     
         // het script gebruikt de ABI gegevens uit de artefacten die bestaan nadat het smart contract gecompileerd is
         // Zorg ervoor dat het script en keer succesvol gecompileerd is voordat dit script wordt gebruikt!
-        const artifactsPath = `browser/contracts/artifacts/${contractName}.json`
+        const artifactsPath = `browser/artifacts/${contractName}.json`
 
         const metadata = JSON.parse(await remix.call('fileManager', 'getFile', artifactsPath))
         

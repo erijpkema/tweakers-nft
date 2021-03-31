@@ -21,7 +21,7 @@
           return;
         }
 
-        const artifactsPath = `browser/contracts/artifacts/${contractName}.json` // Change this for different path
+        const artifactsPath = `browser/artifacts/${contractName}.json` // Change this for different path
 
         const metadata = JSON.parse(await remix.call('fileManager', 'getFile', artifactsPath))
         
