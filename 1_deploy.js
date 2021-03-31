@@ -20,15 +20,9 @@
     
         // het script gebruikt de ABI gegevens uit de artefacten die bestaan nadat het smart contract gecompileerd is
         // Zorg ervoor dat het script en keer succesvol gecompileerd is voordat dit script wordt gebruikt!
-        const artifactsPath = `browser/artifacts/${contractName}.json`
+        const artifactsPath = `browser/github/mosbuma/tweakers-nft/artifacts/${contractName}.json`
 
         const metadata = JSON.parse(await remix.call('fileManager', 'getFile', artifactsPath))
-        
-        // Zorg ervoor dat metamask verbonden is met de IDE en dat "Environment" is ingesteld op "Injected Web3"
-        // als dit klopt zie je "Rinkeby (4) network" vermeld staan
-        
-        // het geselecteerde account in metamask betaalt voor het uitrollen en wordt eigenaar
-        const accounts = await web3.eth.getAccounts()
         
         // maak een nieuwe instantie van het contract
         let contract = new web3.eth.Contract(metadata.abi)
@@ -39,6 +33,12 @@
             arguments: constructorArgs
         })
     
+        // Zorg ervoor dat metamask verbonden is met de IDE en dat "Environment" is ingesteld op "Injected Web3"
+        // als dit klopt zie je "Rinkeby (4) network" vermeld staan
+        
+        // het geselecteerde account in metamask betaalt voor het uitrollen en wordt eigenaar
+        const accounts = await web3.eth.getAccounts()
+        
         // verstuur de transactie naar de blockchain (bevestigen in metamask)
         const newContractInstance = await contract.send({
             from: accounts[0],
