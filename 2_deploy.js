@@ -1,11 +1,11 @@
 // Klik met de rechter muistoets op het script en kies run om het script uit te voeren
 
-(async () => {
+async function go() {
     try {
         console.log('Verstuur contract naar de blockchain')
         
         // maak een datum tijd stempel aan voor in de tokennaam
-        const pad = (n) => { return ("0" + n).slice(-2) }
+        const pad = (n) => { return (("0" + n).slice(-2)) }
         
         const d = new Date()
         const suffix1 = d.getFullYear() + pad(d.getMonth()+1) + pad(d.getDate())
@@ -22,7 +22,7 @@
         // Zorg ervoor dat het script en keer succesvol gecompileerd is voordat dit script wordt gebruikt!
         const artifactsPath = `browser/github/mosbuma/tweakers-nft/artifacts/${contractName}.json`
 
-        const metadata = JSON.parse(await remix.call('fileManager', 'getFile', artifactsPath))
+        const metadata = JSON.parse(await (remix.call('fileManager', 'getFile', artifactsPath)))
         
         // maak een nieuwe instantie van het contract
         let contract = new web3.eth.Contract(metadata.abi)
@@ -52,4 +52,6 @@
     } catch (e) {
         console.log(e.message)
     }
-  })()
+  }
+  
+  go();
