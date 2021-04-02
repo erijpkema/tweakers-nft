@@ -33,7 +33,7 @@ const createTokenData = async (tokenindex) =>  {
 
   context.fillStyle = '#fff'
   context.font = 'bold 30pt Menlo'
-  context.fillText('tweakers.nl', 300, 530)
+  context.fillText('tweakers.net', 300, 530)
 
   loadImage('./logo.png').then(image => {
     context.drawImage(image, 300 - image.width/2, 5, image.width, image.height)
@@ -42,7 +42,7 @@ const createTokenData = async (tokenindex) =>  {
     
     let metadata = {
       "name": "Dit is een tweakers NFT",
-      "description": "Gemaakt dankzij tweakers.nl!",
+      "description": "Gemaakt dankzij tweakers.net!",
       "image": "https://raw.githubusercontent.com/mosbuma/tweakers-nft/master/data/" + tokenindex + ".png",
       "attributes": []
     }
