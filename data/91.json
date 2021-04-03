@@ -1,1 +1,6 @@
-{"name":"Dit is een tweakers NFT","description":"Gemaakt dankzij tweakers.net!","image":"https://raw.githubusercontent.com/mosbuma/tweakers-nft/master/data/91.png","attributes":[]}
+{
+  "name": "Dit is een tweakers NFT",
+  "description": "Gemaakt dankzij tweakers.net!",
+  "image": "https://raw.githubusercontent.com/mosbuma/tweakers-nft/master/data/91.png",
+  "attributes": []
+}

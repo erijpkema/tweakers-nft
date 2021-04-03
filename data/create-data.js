@@ -47,7 +47,7 @@ const createTokenData = async (tokenindex) =>  {
       "attributes": []
     }
 
-    fs.writeFileSync('./' + tokenindex +'.json', JSON.stringify(metadata))
+    fs.writeFileSync('./' + tokenindex +'.json', JSON.stringify(metadata,0,2))
   })
 }
 
