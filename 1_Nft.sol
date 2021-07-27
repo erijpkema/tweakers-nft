@@ -10,7 +10,7 @@ import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/cec0800c541c
 
 contract Nft is ERC721 {
     using Counters for Counters.Counter;
-    
+
     Counters.Counter private _tokenIds;
 
     constructor(string memory _name, string memory _symbol) ERC721(_name, _symbol) public { }
