@@ -5,7 +5,7 @@ async function go() {
 
         const contractName = 'Nft'
 
-        const contractAddress = '--contract adres hier invullen--' // TODO: invullen nadat het contract gedeployed is!
+        const contractAddress = '0xD14183b60A787baC8112d3106313088041ed3144' // TODO: invullen nadat het contract gedeployed is!
         if(""===contractAddress) {
           console.log("Afgebroken: vul eerst het contractadres in!");
           return;
@@ -21,7 +21,7 @@ async function go() {
           return;
         }
 
-        const artifactsPath = `browser/erijpkema/mosbuma/tweakers-nft/artifacts/${contractName}.json` // Change this for different path
+        const artifactsPath = `browser/artifacts/${contractName}.json` // Change this for different path
 
         const metadata = JSON.parse(await (remix.call('fileManager', 'getFile', artifactsPath)))
 
@@ -30,8 +30,12 @@ async function go() {
         let nextid = Number(totalSupply) + 1
 
         // maak een link naar het metadata record voor deze token
-        // const uri = "https://raw.githubusercontent.com/erijpkema/tweakers-nft/master/data/" + nextid.toString() +".json"
-        const uri = "https://ipfs.io/ipfs/QmXLdR9724Fx1EPWysyrJuJcTFg7pgmRxHmamrBYZN9vLi"
+        //const uri = "https://raw.githubusercontent.com/erijpkema/tweakers-nft/master/data/" + nextid.toString() +".json"
+        //const uri = "https://ipfs.io/ipfs/QmXLdR9724Fx1EPWysyrJuJcTFg7pgmRxHmamrBYZN9vLi" // sound itself
+        // const uri = "https://ipfs.io/ipfs/QmWvfyD6QGFjBCCpyqmVFGyMrbV89KhBfV4GXy3YjCQmAD" //json
+        // const uri = "https://raw.githubusercontent.com/erijpkema/tweakers-nft/master/data/hello.json" //json
+        const uri = "https://raw.githubusercontent.com/erijpkema/tweakers-nft/master/data/cat-headphones.json" //json
+
 
         // mint een nieuwe token en stuur deze naar de nieuwe eigenaar
         console.log("token " + nextid + " wordt verstuurd naar adres " + newOwnerAddress)
@@ -47,3 +51,4 @@ async function go() {
   }
 
   go();
+
